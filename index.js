@@ -22,7 +22,7 @@ app.use(cors())
 app.use(morgan('dev'))
 
 // EXPRESS ROUTES
-// require('./routes/user')(app)
+require('./routes/user')(app)
 
 // RUN SERVER
 app.listen(port, () => {
