@@ -33,5 +33,15 @@ module.exports = {
             return res.status(200).send(token)
          }
       })
+   },
+   FetchUserData: (req, res, next) => {
+      const query = UserModel.findById(req.user).select('-password')
+      query.exec((error, user) => {
+         if (error) {
+            return next(error)
+         } else {
+            return res.status(200).send(user)
+         }
+      })
    }
 }
