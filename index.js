@@ -24,6 +24,7 @@ app.use(morgan('dev'))
 // EXPRESS ROUTES
 require('./routes/user')(app)
 require('./routes/customer')(app)
+require('./routes/task')(app)
 
 // RUN SERVER
 app.listen(port, () => {
