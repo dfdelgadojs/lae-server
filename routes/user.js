@@ -11,6 +11,12 @@ module.exports = function(app) {
     CommonController.ErrorHandler
   )
 
+  app.get(
+    '/api/users/fetch-all',
+    UserController.FetchUsers,
+    CommonController.ErrorHandler
+  )
+
   app.post(
     '/api/user/signup',
     UserController.CreateUser,

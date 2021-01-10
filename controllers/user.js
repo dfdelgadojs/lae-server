@@ -43,5 +43,58 @@ module.exports = {
             return res.status(200).send(user)
          }
       })
+   },
+   FetchUsers: (req, res, next) => {
+      const query = UserModel.find({})
+      query.exec((error, users) => {
+         if (error) {
+            return next(error)
+         } else if (users.length === 0) {
+            const newUsers = [
+               {
+                  id: 1,
+                  firstname: 'Daniel',
+                  lastname: 'Delgado',
+                  phone: '3108699474',
+                  email: 'ddelgado.js@gmail.com',
+                  status: true
+               },
+               {
+                  id: 2,
+                  firstname: 'Elon',
+                  lastname: 'Musk',
+                  phone: '3154588070',
+                  email: 'elon@gmail.com',
+                  status: true
+               },
+               {
+                  id: 3,
+                  firstname: 'Bill',
+                  lastname: 'Gates',
+                  phone: '3205874150',
+                  email: 'bill@gmail.com',
+                  status: true
+               },
+               {
+                  id: 1,
+                  firstname: 'Steve',
+                  lastname: 'Jobs',
+                  phone: '3148054258',
+                  email: 'steve@gmail.com',
+                  status: true
+               }
+            ]
+            const query = UserModel.insertMany(newUsers)
+            query.exec((error, usersSaved) => {
+               if (error) {
+                  return next(error)
+               } else {
+                  return res.status(200).send(usersSaved)
+               }
+            })
+         } else {
+            return res.status(200).send(users)
+         }
+      })
    }
 }
